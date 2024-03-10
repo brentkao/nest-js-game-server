@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { APP_FILTER } from '@nestjs/core';
+import { ConfigModule } from '@nestjs/config';
 
 //=> 延伸
 import { UserModule } from './user/user.module';
@@ -14,7 +15,7 @@ import { AllExceptionsFilter } from './all-exceptions.filter';
 //=>=======
 
 @Module({
-  imports: [UserModule, UuidModule, ClockModule],
+  imports: [ConfigModule.forRoot(), UserModule, UuidModule, ClockModule],
   controllers: [AppController],
   providers: [AppService, UUIDService, ClockService,{
     provide: APP_FILTER,
